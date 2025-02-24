@@ -4,8 +4,8 @@ import com.acho.springtodo.repositories.ToDoItemRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ToDoItemController {
@@ -17,11 +17,11 @@ public class ToDoItemController {
     }
 
     @GetMapping("/")
-    public ModelAndView index(){
-        logger.debug("request to GET index");
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("toDoItems",toDoItemRepository.findAll());
-        return modelAndView;
+    public String index(Model model) {
+        logger.info("request to GET index");
+
+        model.addAttribute("toDoItems", toDoItemRepository.findAll());
+      return "index";
     }
 
 }

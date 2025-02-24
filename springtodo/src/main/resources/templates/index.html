@@ -1,11 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <title>Title</title>
+    <link th:rel="stylesheet"  th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <title>Index</title>
 </head>
 <body>
+<div class="container">
+<h1 class="text-center">ToDo</h1>
+    <hr />
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Complete</th>
+            <th>Created Date</th>
+            <th>Modified Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item: ${toDoItems}">
+            <td th:text="${item.id}">item_id</td>
+            <td th:text="${item.description}">item_description</td>
+            <td th:text="${item.complete}">item_complete</td>
+            <td th:text="${item.createdDate}">item_created-date</td>
+            <td th:text="${item.modifiedDate}">item_modified_date</td>
+        </tr>
+        </tbody>
+    </table>
 
+</div>
+
+
+<script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>
 </body>
 </html>
