@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <link th:rel="stylesheet"  th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
-    <title>Index</title>
+    <title>ToDo</title>
 </head>
 <body>
 <div class="container">
-<h1 class="text-center">ToDo</h1>
+<h1 class="text-center">ToDo List</h1>
     <hr />
+    <p th:text="|Happy ${today}|">Today</p>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -22,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="item: ${toDoItems}">
+        <tr th:each="item: ${toDoItems}" th:class="${item.complete} ? success : warning">
             <td>
                 <div class="btn btn-group-sm" role="group">
                     <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
@@ -37,7 +38,7 @@
         </tr>
         </tbody>
     </table>
-
+<p><a class="btn btn-success" th:href="@{/add-todo}"> Add ToDo Item</a> </p>
 </div>
 
 

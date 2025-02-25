@@ -15,6 +15,12 @@ public class ToDoFormController {
         this.toDoItemRepository = toDoItemRepository;
     }
 
+    @GetMapping("/add-todo")
+    public String showCreateForm(ToDoItem toDoItem, Model model){
+        model.addAttribute(toDoItem);
+        return "add-todo-item";
+    }
+
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         ToDoItem toDoItem = toDoItemRepository
@@ -26,7 +32,7 @@ public class ToDoFormController {
         return "update-todo-item";
     }
 
-    @GetMapping("/delete/{id")
+    @GetMapping("/delete/{id}")
     public String deleteTodoItem(@PathVariable("id") long id, Model model) {
         ToDoItem toDoItem = toDoItemRepository
                 .findById(id)
@@ -35,4 +41,6 @@ public class ToDoFormController {
         toDoItemRepository.delete(toDoItem);
         return "redirect:/";
     }
+
+
 }
